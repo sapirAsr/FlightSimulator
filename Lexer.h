@@ -10,16 +10,22 @@
 #include <fstream>
 #include <sstream>
 #include <list>
+#include "Command.h"
 using namespace std;
+extern unordered_map<string,Command*> commandMap;
 
-class Lexer {
+class Lexer{
 private:
     const char *fileName;
-
+    vector<char> operatorVec = {'<', '>', '!', '='};
+    ifstream infile;
 public:
+    // constructor
     Lexer(const char* file);
-
-    list<string> lexing();
+    // takes the file and split i.
+    void lexing();
+    // checks if a given char is in the vector operators
+    bool inVec(char c);
 };
 
 
